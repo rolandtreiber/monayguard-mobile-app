@@ -48,7 +48,6 @@ const Transactions = () => {
     importance_levels: [],
     start_date: new Date(new Date().setMonth(new Date().getMonth()-1)),
     end_date: new Date(new Date().setDate(new Date().getDate()+1)),
-    page: 0,
     order_by: 'date',
     order: 'DESC',
     types: [1, 2, 3]
@@ -76,7 +75,8 @@ const Transactions = () => {
         categories: filter.categories.map(c => c.value),
         tags: filter.tags.map(t => t.value),
         start_date: formatDateForApi(filter.start_date),
-        end_date: formatDateForApi(filter.end_date)
+        end_date: formatDateForApi(filter.end_date),
+        page: page
       }).then(response => {
         if (response && response.status === 200) {
           const {data} = response;
@@ -84,8 +84,14 @@ const Transactions = () => {
             if (clear) {
               setDataState(data)
             } else {
-              if (data.length > 0) {
-                setDataState([...dataState, ...data])
+              if (data.list.length > 0) {
+                setDataState({
+                  ...dataState,
+                  list: [
+                    ...dataState.list,
+                    ...data.list
+                  ]
+                })
               } else {
                 setCanLoadMore(false)
               }

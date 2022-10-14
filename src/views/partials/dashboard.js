@@ -155,7 +155,7 @@ const Dashboard = () => {
 
   const CUT_OFF = 20
   const BarChartLabels = ({  x, y, bandwidth, data }) => (
-    quickStatsWeek.map((value, index) => (
+    data.map((value, index) => (
       <Text
         key={ index }
         x={ value > CUT_OFF ? x(0) + 10 : x(value) + 10 }
@@ -223,7 +223,7 @@ const Dashboard = () => {
               gridMin={0}
             >
               <Grid direction={Grid.Direction.VERTICAL}/>
-              <BarChartLabels/>
+              <BarChartLabels data={quickStatsWeek}/>
             </BarChart>}
             <Paragraph>Last 30 days</Paragraph>
             {quickStatsMonth && <BarChart
@@ -236,7 +236,7 @@ const Dashboard = () => {
               gridMin={0}
             >
               <Grid direction={Grid.Direction.VERTICAL}/>
-              <BarChartLabels/>
+              <BarChartLabels data={quickStatsMonth}/>
             </BarChart>}
           </Card.Content> : <Card.Content>
             <Title>Welcome!</Title>

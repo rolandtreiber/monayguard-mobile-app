@@ -19,7 +19,7 @@
     "axios": "^0.27.2",
     "color": "^4.2.3",
     "expo": "^46.0.10",
-    "expo-modules-core": "^0.11.5",
+    "expo-modules-core": "^0.11.8",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
     "i": "^0.3.7",
